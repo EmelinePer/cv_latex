@@ -1,18 +1,5 @@
 FROM texlive/texlive:latest
 
-# Install required LaTeX packages
-RUN tlmgr update --self && \
-    tlmgr install \
-    moderncv \
-    ulem \
-    xcolor \
-    geometry \
-    cjk \
-    fontawesome5 \
-    simpleicons \
-    lm \
-    helvetic
-
 # Install additional utilities
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -26,7 +13,7 @@ WORKDIR /latex
 
 # Copy LaTeX files
 COPY main.tex /latex/
-COPY avatar.jpg /latex/
+COPY img/avatar.jpg /latex/img/avatar.jpg
 
 # Command to build the CV
 CMD ["pdflatex", "main.tex"]
